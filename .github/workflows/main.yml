@@ -17,7 +17,7 @@ jobs:
         with:
           update-conda: true
           python-version: ${{ matrix.python-version }}
-          conda-channels: defaults, conda-forge
+          conda-channels: conda-forge
       - name: Conda env configuration with mamba
         run: |
             conda install mamba
@@ -33,4 +33,4 @@ jobs:
         run: |
             source activate duck
             flake8 duck
-        if: matrix.python-version == 3.10
+        if: matrix.python-version == '3.10'

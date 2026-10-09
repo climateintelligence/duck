@@ -1,8 +1,24 @@
 click
 jinja2
 psutil
-pywps>=4.5.1,<4.6
-# CRAI
-# climatereconstructionAI>=0.1.0
+pywps>=4.7,<4.8
+# Keep pip installs aligned with the Conda inference environment.
+torch>=2.5,<2.6
+torchvision>=0.20,<0.21
+torchmetrics>=0.11.2,<0.12
+tqdm>=4.64
+numpy>=1.26,<2
+matplotlib>=3.8,<3.9
+tensorboardX>=2.5
+tensorboard>=2.9
+xarray>=2023.1,<2025
+dask>=2023.1,<2025
+netCDF4>=1.6
+setuptools==59.5.0
+xesmf>=0.8,<0.9
+cartopy>=0.22,<0.24
+numba>=0.59,<0.61
+requests
+# CRAI and its pretrained models are installed by pip, after Conda.
 craimodels @ git+https://github.com/climateintelligence/craimodels@main#egg=craimodels
 climatereconstructionAI @ git+https://github.com/FREVA-CLINT/climatereconstructionAI@clint#egg=climatereconstructionAI

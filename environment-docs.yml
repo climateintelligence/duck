@@ -2,9 +2,10 @@
 name: duck-docs
 channels:
 - conda-forge
-- defaults
+- nodefaults
 dependencies:
-- pywps>=4.4
+- python=3.10
+- pywps>=4.7,<4.8
 - sphinx
 - nbsphinx
 - ipython

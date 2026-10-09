@@ -1,31 +1,38 @@
 name: duck
 channels:
-- conda-forge
-- pytorch
+  - conda-forge
+  - nodefaults
 dependencies:
-- pip
-- python>=3.7
-- pywps>=4.5.1,<4.6
-- jinja2
-- click
-- psutil
-# tests
-- pytest
-- requests
-- flake8
-# clint ai
-- pytorch>=1.11.0
-- tqdm>=4.64.0
-- torchvision>=0.12.0
-- numpy>=1.21.6
-- matplotlib>=3.5.1
-- tensorboardX>=2.5
-- tensorboard>=2.9.0
-- xarray>=2022.3.0
-- dask>=2022.7.0
-- netcdf4>=1.5.8
-- setuptools==59.5.0
-- xesmf>=0.6.2
-# plot
-- cartopy>=0.20.2
-- numba>=0.55.1
+  # CRAI requires setuptools 59.5; its Conda builds support Python <=3.10.
+  - python=3.10
+  - pip
+  - jinja2
+  - click
+  - psutil
+  - requests
+  # CRAI runs inference on the CPU; retain legacy checkpoint loading behavior.
+  - pytorch>=2.5,<2.6
+  - torchvision>=0.20,<0.21
+  - pytorch-cpu
+  # Match PyTorch 2.5.1 wheel metadata when pip installs CRAI.
+  - sympy=1.13.1
+  - torchmetrics>=0.11.2,<0.12
+  - tqdm>=4.64
+  - numpy>=1.26,<2
+  - matplotlib-base>=3.8,<3.9
+  - tensorboardx>=2.5
+  - tensorboard>=2.9
+  - xarray>=2023.1,<2025
+  - dask>=2023.1,<2025
+  - netcdf4>=1.6
+  # Required by both upstream CRAI packages' build metadata.
+  - setuptools=59.5.0
+  - xesmf>=0.8,<0.9
+  - cartopy>=0.22,<0.24
+  - numba>=0.59,<0.61
+  # PyWPS uses pip wheels to avoid the Conda GDAL/PROJ conflict on Python 3.10.
+  - pip:
+      - pywps>=4.7,<4.8
+  # tests
+  - pytest>=6,<9
+  - flake8
