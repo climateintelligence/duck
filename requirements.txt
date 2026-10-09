@@ -6,3 +6,11 @@ pywps>=4.5.1,<4.6
 # climatereconstructionAI>=0.1.0
 craimodels @ git+https://github.com/climateintelligence/craimodels@main#egg=craimodels
 climatereconstructionAI @ git+https://github.com/FREVA-CLINT/climatereconstructionAI@clint#egg=climatereconstructionAI
+# provenance
+prov>=2.0.0
+pydot
+rdflib
+rdflib-sqlalchemy
+sqlalchemy<2
+pandas
+pyyaml

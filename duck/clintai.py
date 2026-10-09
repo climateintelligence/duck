@@ -4,13 +4,16 @@ import shutil
 import craimodels
 from climatereconstructionai import evaluate
 import logging
+
 LOGGER = logging.getLogger("PYWPS")
 
 info_models = craimodels.info_models()
 dataset_names = list(info_models.keys())
 
 
-def write_clintai_cfg(base_dir, model_dir, eval_name, data_name, data_type, eval_parameters):
+def write_clintai_cfg(
+    base_dir, model_dir, eval_name, data_name, data_type, eval_parameters
+):
     cfg_templ = """
     --data-root-dir {{ base_dir }}
     --log-dir {{ base_dir }}
@@ -31,7 +34,8 @@ def write_clintai_cfg(base_dir, model_dir, eval_name, data_name, data_type, eval
         eval_name=eval_name,
         data_name=data_name,
         data_type=data_type,
-        eval_parameters=eval_parameters)
+        eval_parameters=eval_parameters,
+    )
     out = base_dir / "clintai.cfg"
     with open(out, "w") as fp:
         fp.write(cfg)
@@ -52,7 +56,8 @@ def run(dataset, dataset_name, variable_name, outdir, update_status):
         eval_name=dataset.stem,
         data_name=dataset.name,
         data_type=variable_name,
-        eval_parameters=info_models[dataset_name]["eval-parameters"])
+        eval_parameters=info_models[dataset_name]["eval_parameters"],
+    )
     # print(f"written cfg {cfg_file}")
     try:
         evaluate(arg_file=cfg_file.as_posix(), prog_func=update_status)

@@ -111,3 +111,6 @@ testdata.json
 
 # macos
 .DS_Store
+
+# tests
+PET0.ESMF_LogFile

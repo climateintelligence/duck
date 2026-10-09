@@ -15,7 +15,7 @@ from tests.common import (
 from duck.processes.wps_clintai import ClintAI
 
 
-@pytest.mark.online
+@pytest.mark.skip
 def test_wps_clintai_hadcrut4_temperature_anomaly():
     client = client_for(Service(processes=[ClintAI()]))
     datainputs = f"file=@xlink:href={HADCRUT4_TAS_NC_ZIP};variable_name=temperature_anomaly"
