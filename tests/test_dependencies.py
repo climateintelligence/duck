@@ -2,13 +2,33 @@
 
 import craimodels
 import numpy as np
+import pytest
 import torch
 import xarray as xr
+from unittest.mock import Mock
 
 from climatereconstructionai import config as cfg
 from climatereconstructionai.model.net import CRAINet
 from climatereconstructionai.utils.io import load_ckpt, load_model
 from duck.clintai import write_clintai_cfg
+from duck import clintai
+
+
+@pytest.mark.parametrize("dataset_name", ["HadCRUT4", "HadCRUT5"])
+def test_crai_dispatch_uses_installed_model_metadata(tmp_path, monkeypatch, dataset_name):
+    info = craimodels.info_models()[dataset_name]
+    dataset = tmp_path / "input.nc"
+    xr.Dataset({info["variable_name"]: ("time", [1.0])}).to_netcdf(dataset)
+    evaluate = Mock()
+    monkeypatch.setattr(clintai, "evaluate", evaluate)
+    progress = [Mock(), 0, 100]
+
+    clintai.run(dataset, dataset_name, info["variable_name"], tmp_path, progress)
+
+    evaluate.assert_called_once_with(arg_file=str(tmp_path / "clintai.cfg"), prog_func=progress)
+    config = (tmp_path / "clintai.cfg").read_text()
+    assert info["eval_parameters"] in config
+    assert (tmp_path / "test" / "input.nc").is_file()
 
 
 def test_pretrained_model_cpu_inference(tmp_path):

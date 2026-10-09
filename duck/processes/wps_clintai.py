@@ -33,7 +33,7 @@ class ClintAI(Process):
                          abstract="Enter a URL pointing to a NetCDF file with missing values.",
                          min_occurs=1,
                          max_occurs=1,
-                         default="https://www.metoffice.gov.uk/hadobs/hadcrut5/data/current/non-infilled/HadCRUT.5.0.1.0.anomalies.ensemble_mean.nc", # noqa
+                         default="https://www.metoffice.gov.uk/hadobs/hadcrut5/data/HadCRUT.5.0.2.0/non-infilled/HadCRUT.5.0.2.0.anomalies.ensemble_mean.nc", # noqa
                          supported_formats=[FORMATS.NETCDF, FORMATS.ZIP]),
             LiteralInput('variable_name', 'Variable name', data_type='string',
                          abstract='Enter here the variable name to be infilled.',

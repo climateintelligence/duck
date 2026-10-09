@@ -18,12 +18,12 @@ jobs:
           update-conda: true
           python-version: ${{ matrix.python-version }}
           conda-channels: conda-forge
-      - name: Conda env configuration with mamba
+      - name: Install locked Ansible environment
         run: |
-            conda install mamba
-            mamba env create -f environment.yml
+            conda create --yes --name duck --file linux-64.spec
             source activate duck
             pip install -e ".[dev]"
+            python -m pip check
       - name: Test with conda
         run: |
             source activate duck
