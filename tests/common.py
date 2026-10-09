@@ -18,7 +18,7 @@ HADCRUT4_NC_ZIP = "HadCRUT.4.6.0.0.median_netcdf.zip"
 
 # HADCRUT4_ANOMALIES_1_NC = (TEST_DATA_CACHE_DIR / HADCRUT4_NC_ZIP).as_uri()
 HADCRUT4_TAS_NC_ZIP = "https://www.metoffice.gov.uk/hadobs/hadcrut4/data/current/gridded_fields/HadCRUT.4.6.0.0.median_netcdf.zip"  # noqa
-HadCRUT5_TAS_MEAN_NC = "https://www.metoffice.gov.uk/hadobs/hadcrut5/data/current/non-infilled/HadCRUT.5.0.1.0.anomalies.ensemble_mean.nc"  # noqa
+HadCRUT5_TAS_MEAN_NC = "https://www.metoffice.gov.uk/hadobs/hadcrut5/data/HadCRUT.5.0.2.0/non-infilled/HadCRUT.5.0.2.0.anomalies.ensemble_mean.nc"  # noqa
 
 
 class WpsTestClient(WpsClient):

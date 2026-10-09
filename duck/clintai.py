@@ -52,7 +52,7 @@ def run(dataset, dataset_name, variable_name, outdir, update_status):
         eval_name=dataset.stem,
         data_name=dataset.name,
         data_type=variable_name,
-        eval_parameters=info_models[dataset_name]["eval-parameters"])
+        eval_parameters=info_models[dataset_name]["eval_parameters"])
     # print(f"written cfg {cfg_file}")
     try:
         evaluate(arg_file=cfg_file.as_posix(), prog_func=update_status)
